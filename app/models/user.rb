@@ -10,4 +10,11 @@ class User < ApplicationRecord
   # 一個user可以有很多replies
   has_many :replies, dependent: :destroy
 
+  # 一個user可以提出很多筆friendships
+  has_many :friendships, dependent: :destroy
+  # 一個user可以接收到很多筆friendships
+  has_many :apply_friends, through: :friendships
+  # 一個user可以有很多friend
+  has_many :friends, through: :friendships
+
 end
