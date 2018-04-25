@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180425074435) do
+ActiveRecord::Schema.define(version: 20180425081406) do
 
   create_table "posts", force: :cascade do |t|
     t.text "title", limit: 60, default: "N/A", null: false
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 20180425074435) do
     t.index ["replies_count"], name: "index_posts_on_replies_count"
     t.index ["user_id"], name: "index_posts_on_user_id"
     t.index ["viewed_count"], name: "index_posts_on_viewed_count"
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.text "comment"
+    t.integer "post_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_replies_on_post_id"
+    t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
