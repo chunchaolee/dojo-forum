@@ -7,4 +7,7 @@ class User < ApplicationRecord
   # 一個user可以有很多筆posts資訊
   has_many :posts, dependent: :destroy
 
+  # 一個user可以有很多replies
+  has_many :replies, dependent: :destroy
+
 end
