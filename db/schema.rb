@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180425064408) do
+ActiveRecord::Schema.define(version: 20180425074435) do
+
+  create_table "posts", force: :cascade do |t|
+    t.text "title", limit: 60, default: "N/A", null: false
+    t.text "detail"
+    t.string "img"
+    t.string "who_can_see", default: "all"
+    t.integer "replies_count", default: 0
+    t.integer "viewed_count", default: 0
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["replies_count"], name: "index_posts_on_replies_count"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+    t.index ["viewed_count"], name: "index_posts_on_viewed_count"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
