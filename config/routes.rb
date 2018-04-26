@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   # setup friendship
   resources :friendships, only: [:create, :destroy]
 
+  # setup collection
+  resources :collections, only: [:create, :destroy]
+
   # admin
   namespace :admin do
 
