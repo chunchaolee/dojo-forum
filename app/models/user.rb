@@ -20,4 +20,7 @@ class User < ApplicationRecord
   # 一個user可以有很多friend
   has_many :friends, through: :friendships
 
+  # 一個user可以有很多collections
+  has_many :collections, dependent: :destroy
+
 end
