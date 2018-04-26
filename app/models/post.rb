@@ -7,6 +7,9 @@ class Post < ApplicationRecord
   has_many :replies, dependent: :destroy
 
   # 一個post可以有很多post_categories
-  has_many :post_categories
+  has_many :post_categories, dependent: :destroy
+
+  # 一個post可以有很collection
+  has_many :collections, dependent: :destroy
 
 end
