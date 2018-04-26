@@ -22,5 +22,10 @@ class User < ApplicationRecord
 
   # 一個user可以有很多collections
   has_many :collections, dependent: :destroy
+  # 一個user可以collect很多post
+  has_many :collected_posts, through: :collections, source: :post
+  
+
+
 
 end
