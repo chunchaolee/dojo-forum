@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # setup user
-  resources :users, only: [:show, :edit] do 
+  resources :users, only: [:show, :edit, :update] do 
 
     # setup draft
     resources :drafts, except: [:new]
@@ -31,13 +31,7 @@ Rails.application.routes.draw do
   namespace :admin do
 
     resources :categories, only: [:index, :create, :edit, :update, :destroy]
-    resources :users , only: [:index, :destroy] do 
-
-      member do
-        post :level
-      end
-
-    end
+    resources :users , only: [:index, :destroy]
 
   end
 
