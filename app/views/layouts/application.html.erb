@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>DojoForum</title>
+    <!-- viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -45,7 +47,7 @@
                   <%= link_to "Profile", user_path(current_user), class: "nav-link" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "Log out", destroy_user_session_path, class: "nav-link" %>
+                  <%= link_to "Log out", destroy_user_session_path, class: "nav-link", method: :delete %>
                 </li>
               <% else %>
                 <span class="navbar-text">
@@ -55,7 +57,7 @@
                   <%= link_to "Profile", user_path(current_user), class: "nav-link" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "Log out", destroy_user_session_path, class: "nav-link" %>
+                  <%= link_to "Log out", destroy_user_session_path, class: "nav-link", method: :delete %>
                 </li>
               <% end %>
             <% else %>
@@ -72,6 +74,23 @@
       </nav>
       <!-- navbar //end -->
     </header>
+
+    <!-- flash & dismissable notice/alert -->
+    <% if notice.present? %>
+      <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <p><%= notice %></p>
+      </div>
+    <% elsif alert.present? %>
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <p><%= alert %></p>
+      </div>
+    <% end %>
 
     <%= yield %>
   </body>
