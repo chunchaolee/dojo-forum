@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates_presence_of :name
+
   # 一個user可以有很多筆posts資訊
   has_many :posts, dependent: :destroy
 
