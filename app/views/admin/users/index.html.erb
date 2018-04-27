@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="container">
+    <!-- tabs //start -->
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <%= link_to "Category List", admin_categories_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "User List", admin_users_path, class: "nav-link active" %>
+      </li>
+    </ul><br />
+    <!-- tabs //end -->
+
+    <!-- table //start -->
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col"><%= sort_link(@q, :name, "Name")%></th>
+            <th scope="col"><%= sort_link(@q, :email, "Email")%></th>
+            <th scope="col"><%= sort_link(@q, :is_admin, "Role")%></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td>
+                <%= form_for user do |f|%>
+                  <% if user.is_admin %>
+                    <%= f.select :level, options_for_select([["Admin", 1], ["Normal", 2]], 1) %>
+                  <% else %>
+                    <%= f.select :level, options_for_select([["Admin", 1], ["Normal", 2]], 2) %>
+                  <% end %>
+                  
+                  <%= f.submit %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <!-- table //end -->
+
+  </div>
+</div>
