@@ -1,0 +1,34 @@
+<!-- site name //start -->
+<section class="sitename">
+  <div class="container_table">
+    <div class="container_table_cell">
+       <h1>Dojo Forum</h1>
+    </div>
+  </div>
+</section><br />
+<!-- site name //end -->
+
+<div class="container-fluid">
+
+  <!-- categories //start -->
+  <ul class="nav nav-pills nav-fill">
+
+    <li class="nav-item">
+      <%= link_to "All", posts_path, class: "nav-link btn btn-outline-secondary active" %>
+    </li>
+
+    <% @categories.each do |category| %>
+      <li class="nav-item">
+        <%= link_to category.name , category_path(category), class: "nav-link btn btn-outline-secondary" %>
+      </li>
+    <% end %>
+  </ul><br />
+  <!-- categories //end -->
+
+  <!-- post list //start -->
+  <div>
+    <%= render partial: "shared/posts", locals: {objects: @posts} %>
+  </div>
+  <!-- post list //end -->
+
+</div>
