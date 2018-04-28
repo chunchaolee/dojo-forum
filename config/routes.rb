@@ -21,6 +21,9 @@ Rails.application.routes.draw do
 
   end
 
+  # setup category
+  resources :categories, only: [:show]
+
   # setup friendship
   resources :friendships, only: [:create, :destroy]
 
