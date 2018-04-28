@@ -1,6 +1,10 @@
 /*------ basic ------*/
 #header_nav {
-  margin-bottom: 30px;
+  margin-bottom: 0;
+}
+
+.container-fluid {
+  margin-top: 30px;
 }
 
 p {
@@ -11,4 +15,31 @@ p {
 .userform {
   max-width: 60%;
   margin: auto;
+}
+
+
+/*------ post index ------*/
+.sitename {
+  width: 100%;
+  height: 180px;
+  background-size: cover;
+  background-color: #f0f0f0;
+}
+
+.container_table {
+  display: table;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.container_table_cell {
+  display: table-cell;
+  text-align: left;
+  padding-left: 30px;
+  vertical-align: middle;
+}
+
+.nav-item {
+  margin-right: 2rem;
 }
