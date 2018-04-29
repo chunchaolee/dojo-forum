@@ -1,20 +1,20 @@
 <div class="table-responsive">
   <table class="table">
     <thead class="thead-light">
-      <tr>
-        <th scope="col">Replies count</th>
-        <th scope="col">Title</th>
-        <th scope="col">Last replied at</th>
-        <th scope="col">Viewed count</th>
+      <tr class="row m-0">
+        <th class="col-2"><%= sort_link(@q, :replies_count, "Replies count") %></th>
+        <th class="col-6"><%= sort_link(@q, :title, "Title") %></th>
+        <th class="col-2"><%= sort_link(@q, :last_replied_at, "Last_replied_at") %></th>
+        <th class="col-2"><%= sort_link(@q, :viewed_count, "Viewed_count") %></th>
       </tr>
     </thead>
     <tbody>
       <% objects.each do |object| %>
-        <tr>
-          <td><%= object.replies_count %></td>
-          <td><%= object.title %></td>
-          <td><%= object.replies.last.created_at %></td>
-          <td><%= object.viewed_count %></td>
+        <tr class="row m-0">
+          <td class="col-2"><%= object.replies_count %></td>
+          <td class="col-6"><%= object.title %></td>
+          <td class="col-2"><%= object.last_replied_at %></td>
+          <td class="col-2"><%= object.viewed_count %></td>
         </tr>
       <% end %>
     </tbody>
