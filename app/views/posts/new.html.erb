@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  
+  <!-- form //start -->
+  <div class="post-form form-group">
+    
+    <%= form_for @post do |f| %>
+
+      <%= f.text_field :title, class: "form-control", placeholder: "Enter Post Title"%><br />
+
+      <%= f.text_area :detail, class: "form-control", placeholder: "Enter Detail", rows: "15" %><br />
+
+      <!-- file //strat -->
+      <%= image_tag @post.img, width: '300px' if @post.img? %>
+      <%= f.file_field :img %><br /><br />
+      <!-- file //end -->
+
+      <!-- who can see //start -->
+      <div class="field">
+        <span>Who Can See : </span>  
+        <%= f.radio_button :who_can_see, "all", :checked => true %>
+        <%= f.label :who_can_see, "All", :value => "all"  %>
+        <%= f.radio_button :who_can_see, "friend" %>
+        <%= f.label :who_can_see, "Friend", :value => "friend" %>
+        <%= f.radio_button :who_can_see, "myself" %>
+        <%= f.label :who_can_see, "Myself", :value => "myself" %>
+      </div>
+      <!-- who can see //end -->
+
+      <!-- Category // start -->
+      <div class="field category-checkbox">
+        <span>Category : </span>
+        <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |i| %>
+          <div class="checkbox">
+            <%= i.check_box %>
+            <%= i.label %>
+          </div>
+        <% end %>
+      </div>
+      <!-- Category // end -->
+
+      <!-- buttons //start -->
+      <div>
+        <p>Status:</p><br />
+        <%= link_to "Save Draft", user_drafts_path(current_user), class: "btn btn-outline-secondary"%>  
+        <%= f.submit "Submit", class: "btn btn-outline-secondary"%>
+      </div>
+      <!-- buttons //end -->
+
+    <% end %>
+
+  </div>
+  <!-- form //end -->
+
+</div>
