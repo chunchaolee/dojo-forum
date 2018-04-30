@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :authenticate_user!, :except => [:index]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   ALLOW_QUERIES = %w[s replies_count title_cont viewed_count :last_replied_at_cont ].freeze
 
@@ -17,6 +18,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
     if @post.save
       redirect_to posts_path
       flash["notice"] = "成功建立Post"
@@ -24,6 +26,10 @@ class PostsController < ApplicationController
       flash[:alert] = @post.errors.full_messages.to_sentence
       render :new
     end
+  end
+
+  def show
+
   end
 
   private
@@ -37,6 +43,10 @@ class PostsController < ApplicationController
     if params[:q].present?
       params.require(:q).permit(*ALLOW_QUERIES)
     end
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 
 end
