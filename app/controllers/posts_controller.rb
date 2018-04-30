@@ -32,6 +32,12 @@ class PostsController < ApplicationController
 
   end
 
+  def destroy
+    @post.destroy
+    redirect_to posts_path
+    flash["notice"] = "成功刪除Post"
+  end
+
   private
 
   def post_params
