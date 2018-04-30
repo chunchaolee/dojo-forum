@@ -1,0 +1,64 @@
+<!-- Post tilte //start -->
+<section class="post-header">
+  <div class="container_table">
+    <div class="container_table_cell">
+      <div class="row" style="margin-right: 0px;">
+        <span class="post-title col-md-9 col-sm-12"><strong><%= @post.title %></strong></span>
+        <span class="col-md-2 col-sm-12 mr-auto">
+         <%= link_to "Collect", collections_path, class: "btn btn-outline-secondary" %>
+         <%= link_to "Comment", root_path, class: "btn btn-outline-secondary" %>
+       </span>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Post tilte //end -->
+<div class="post-show">
+  <div class="container-fluid border">
+    <div class="row">
+      <!-- post show //start -->
+      <!-- avatar & friendship //start  -->
+      <div class="col-md-2 col-sm-12 border">
+        <h3>待施工</h3>
+      </div>
+      <!-- avatar & friendship //end  -->
+
+      <!-- post detail & edit/delete //start -->
+      <div class="col-md-10 col-sm-12 border">
+        <!-- img //start -->
+        <% if @post.img %>
+          <div class="col-12 post-img">
+            <%= image_tag(@post.img, width: '400', height: '240',class: 'd-block img-fluid') %>
+          </div><br />
+        <% end %>
+        <!-- img //end -->
+
+        <!-- detail //start -->
+        <div class="col-12 post-detail"><%= @post.detail %></div>
+        <!-- detail //end -->
+
+        <!-- edit & destroy -->
+        <div class="post-button text-right">
+          <% if current_user.id == @post.user_id %>
+            <%= link_to "Edit", edit_post_path(@post), class: "btn btn-outline-secondary" %>
+          <% end %>
+          <% if current_user.id == @post.user_id || current_user.is_admin %>
+            <%= link_to "Delete", post_path(@post), method: :DELETE, :data => {:confirm => "ARE YOU SURE?"} ,class: "btn btn-outline-secondary" %>
+          <% end %>
+        </div>
+
+      </div>
+      <!-- post detail & edit/delete //end -->
+      
+      <!-- post show //end -->
+
+      <!-- replies //start -->
+      <!-- replies //end -->
+
+      <!-- comment //start -->
+      <!-- comment //end -->
+
+    </div> <!-- .row //end -->
+  </div><!-- .container-fluid //end -->
+</div>
+
