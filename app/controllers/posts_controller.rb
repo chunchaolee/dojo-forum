@@ -29,7 +29,8 @@ class PostsController < ApplicationController
   end
 
   def show
-
+    @reply = Reply.new
+    @replies = @post.replies.order(created_at: :desc).page(params[:page]).per(20)
   end
 
   def destroy
