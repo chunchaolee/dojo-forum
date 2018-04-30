@@ -1,5 +1,7 @@
 class Reply < ApplicationRecord
 
+  validates_presence_of :comment
+
   # 一筆reply只屬於一個user
   belongs_to :user
 
