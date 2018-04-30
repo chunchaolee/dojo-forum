@@ -1,6 +1,6 @@
 /*------ basic ------*/
 #header_nav {
-  margin-bottom: 0;
+  margin-bottom: 56px;
 }
 
 .container-fluid {
@@ -40,6 +40,56 @@ p {
   vertical-align: middle;
 }
 
-.nav-item {
+.category .nav-item {
   margin-right: 2rem;
+  margin-bottom: 1rem;
+}
+
+
+/*------ new post ------*/
+.new-post .container-fluid {
+  margin-top: 90px;
+}
+.post-form .form-control {
+  background-color: #f0f0f0;
+}
+
+.category-checkbox {
+  display: inline-flex;
+}
+
+.checkbox {
+  margin-right: 0.5rem;
+  margin-left: 0.2rem;
+}
+
+
+
+/*------ post show ------*/
+.post-show .container-fluid {
+  margin-top: 0;
+}
+
+.post-header {
+  width: 100%;
+  height: 90px;
+  background-size: cover;
+  background-color: #f0f0f0;
+}
+
+.post-title {
+  font-size: 1.5rem;
+}
+
+.post-img, .post-button {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.post-detail {
+  overflow: auto;
+  margin-bottom: 30px;
+  word-break: break-all;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
