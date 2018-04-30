@@ -81,15 +81,28 @@ p {
   font-size: 1.5rem;
 }
 
-.post-img, .post-button {
+.post-img, .post-button, .reply-button {
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
-.post-detail {
+.post-detail, .comment {
   overflow: auto;
   margin-bottom: 30px;
   word-break: break-all;
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+
+.reply-list {
+  background-color: #f0f0f0;
+}
+
+.comment {
+  margin-top: 30px;
+}
+
+.comment-form {
+  background-color: #f0f0f0;
+  border-radius: 15px;
 }
