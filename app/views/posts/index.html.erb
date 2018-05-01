@@ -31,6 +31,9 @@
   <div>
     <%= render partial: "shared/posts", locals: {objects: @posts} %>
   </div>
+  <div class="container text-center">
+    <br /><%= paginate @posts %>
+  </div>
   <!-- post list //end -->
 
 </div>

@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def index
     @categories = Category.all
     @q = Post.ransack(ransack_params)
-    @posts = @q.result(distinct: true).order(id: :desc)
+    @posts = @q.result(distinct: true).order(id: :desc).page(params[:page]).per(20)
   end
 
   def new

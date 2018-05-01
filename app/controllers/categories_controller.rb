@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
     @categories = Category.all
     @category = Category.find(params[:id])
     @q = @category.posts.ransack(ransack_params)
-    @posts = @q.result(distinct: true).order(id: :desc)
+    @posts = @q.result(distinct: true).order(id: :desc).page(params[:page]).per(20)
   end
 
   def ransack_params
