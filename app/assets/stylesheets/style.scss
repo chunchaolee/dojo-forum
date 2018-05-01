@@ -47,10 +47,11 @@ p {
 
 
 /*------ new post ------*/
-.new-post .container-fluid {
+.new-post .container-fluid, .user-edit .container-fluid {
   margin-top: 90px;
-}
-.post-form .form-control {
+} 
+
+.post-form .form-control, .user-form .form-control {
   background-color: #f0f0f0;
 }
 
