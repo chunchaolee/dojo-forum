@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   validates_presence_of :name
 
+  mount_uploader :avatar, PhotoUploader
+
   # 一個user可以有很多筆posts資訊
   has_many :posts, dependent: :destroy
 
