@@ -33,6 +33,22 @@ class PostsController < ApplicationController
     @replies = @post.replies.order(created_at: :desc).page(params[:page]).per(20)
   end
 
+  def edit
+    
+  end
+
+  def update
+    if @post.user_id == current_user.id
+      if @post.update_attributes(post_params)
+        redirect_to post_path(@post)
+        flash["notice"] = "成功更新Post"
+      else
+        flash[:alert] = @post.errors.full_messages.to_sentence
+        render :edit
+      end
+    end
+  end
+
   def destroy
     @post.destroy
     redirect_to posts_path
