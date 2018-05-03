@@ -14,6 +14,8 @@ class RepliesController < ApplicationController
     @reply = @post.replies.build(reply_params)
     @reply.user_id = current_user.id
     if @reply.save
+      @post.last_replied_at = @reply.created_at
+      @post.save
       redirect_back(fallback_location: post_path(@post))
       flash[:notice] = "成功留下評論"
     else

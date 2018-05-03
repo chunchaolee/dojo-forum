@@ -13,7 +13,7 @@
         <tr class="row m-0">
           <td class="col-2"><%= object.replies_count %></td>
           <td class="col-6"><%= link_to object.title, post_path(object) %></td>
-          <td class="col-2"><%= object.last_replied_at %></td>
+          <td class="col-2"><%= object.last_replied_at.strftime("%Y-%m-%d") if object.last_replied_at %></td>
           <td class="col-2"><%= object.viewed_count %></td>
         </tr>
       <% end %>
