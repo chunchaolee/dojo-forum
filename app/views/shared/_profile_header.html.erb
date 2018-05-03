@@ -1,0 +1,33 @@
+<!-- user avatar & description //start -->
+<section class="user-profile-header">
+  <div class="container-fluid">
+    <div class="row user-section">
+       
+      <!-- user avatar// start -->
+      <div class="col-md-3 col-sm-12 flex-center">
+        <div class="text-center">
+          <%= image_tag @user.avatar, width: '230px', heigth: '100px', class: "d-block img-fluid user-avatar" if @user.avatar? %><br />
+          <div class="user-name">
+            <%= @user.name %>
+          </div>
+        </div>
+      </div>
+      <!-- user avatar// end -->
+
+      <!-- user description// start  -->
+      <div class="col-md-9 col-sm-12 flex-center">
+        <div>
+          <div class="user-description"><%= @user.description %><br /></div>
+          <% if current_user.id == @user.id %>
+            <div class="text-right user-edit-button">
+              <%= link_to "Edit", edit_user_path(@user), class: "btn btn-outline-secondary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <!-- user description// end  -->
+
+    </div>
+  </div>
+</section><br />
+<!-- user avatar & description //end -->

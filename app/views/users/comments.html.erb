@@ -1,0 +1,52 @@
+<!-- user avatar & description //start -->
+<%= render partial: "shared/profile_header" %>
+<!-- user avatar & description //end -->
+
+<!-- user tabs //start-->
+<div class="container-fluid user-tabs">
+  <ul class="nav nav-tabs nav-fill">
+    <li class="nav-item">
+      <%= link_to "My Post", user_path(@user), class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "My Comment", comments_user_path(@user), class: "nav-link active" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "My Colllect", collects_user_path(@user), class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "My Draft", drafts_user_path(@user), class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "My Friend", friends_user_path(@user), class: "nav-link" %>
+    </li>
+  </ul>
+  
+
+  <div class="table-responsive">
+    <table class="table text-center border">
+      <tbody>
+        <% @user.replies.each do | reply | %>
+          <tr class="row m-0 user-objects">
+            <td class="col-md-8 col-sm-12 text-left">
+              <%= link_to reply.post.title, post_path(reply.post) %><br />
+              <div class="reply-comment">
+                <div class="reply-text"><%= reply.comment%></div>
+              </div>
+            </td>
+            <td class="col-md-4 col-sm-12 flex-center">
+              <% if current_user.id == reply.user_id %>
+                <%= link_to "Edit", edit_post_reply_path(reply.post, reply), class: "btn btn-outline-secondary" %>
+              <% end %>
+              <% if current_user.id == reply.user_id || current_user.is_admin %>
+                <%= link_to "Delete", post_reply_path(reply.post, reply), method: :DELETE, :data => {:confirm => "ARE YOU SURE?"} ,class: "btn btn-outline-secondary" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<!-- user tabs //end-->

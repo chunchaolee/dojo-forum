@@ -11,6 +11,16 @@ p {
   margin-bottom: 0;
 }
 
+.btn {
+  margin-right: 15px;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /*------ user Sign Up ------*/
 .userform {
   max-width: 60%;
@@ -107,3 +117,57 @@ p {
   background-color: #f0f0f0;
   border-radius: 15px;
 }
+
+
+/*------ user profile ------*/
+.user-profile-header {
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  background-color: #f0f0f0;
+}
+
+.user-avatar {
+  margin: 30px auto 10px auto;
+}
+
+.user-name, .user-edit-button {
+  margin: 0px auto 30px auto;
+}
+
+.user-description {
+  overflow: auto;
+  margin: 30px auto 10px auto;
+  background-color: #f0f0f0;
+  word-break: break-all;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.user-tabs .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+  background-color: #f0f0f0;
+}
+
+.user-objects {
+  background-color: #f0f0f0;
+}
+
+.user-objects td {
+  padding-left: 30px;
+}
+
+.reply-comment {
+  margin-top: 15px;
+  margin-bottom: 30px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.reply-text {
+  padding: 10px;
+  overflow: auto;
+  word-break: break-all;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
