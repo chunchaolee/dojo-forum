@@ -17,4 +17,9 @@ class Post < ApplicationRecord
   # 一個post可以有很collection
   has_many :collections, dependent: :destroy
 
+  def count_view
+    self.viewed_count += 1
+    self.save
+  end
+
 end
