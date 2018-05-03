@@ -29,6 +29,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post.count_view
     @reply = Reply.new
     @replies = @post.replies.order(created_at: :desc).page(params[:page]).per(20)
   end
