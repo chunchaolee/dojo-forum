@@ -8,6 +8,13 @@ Rails.application.routes.draw do
     # setup draft
     resources :drafts, except: [:new]
 
+    member do 
+      get :comments
+      get :collects
+      get :drafts
+      get :friends
+    end
+
   end
 
   # setup post
