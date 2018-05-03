@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :comments, :collects, :drafts, :friends]
 
   def show
     
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     if @user.id == current_user.id
       if @user.update_attributes(user_params)
         flash["notice"] = "User Profile更新成功"
-        redirect_back(fallback_location: posts_path)
+        redirect_to user_path(@user)
       else
         flash["alert"] = @user.errors.full_messages.to_sentence
         render :edit
