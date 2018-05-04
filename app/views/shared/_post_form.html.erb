@@ -42,8 +42,15 @@
         <!-- buttons //start -->
         <div>
           <p>Status:</p><br />
-          <%= link_to "Save Draft", user_drafts_path(current_user), class: "btn btn-outline-secondary"%>  
-          <%= f.submit class: "btn btn-outline-secondary"%>
+          <% if @post.is_published && @post.id %>
+            <%= f.submit 'Update Post', class: "btn btn-outline-secondary"%>
+          <% elsif @post.is_published == false %>
+            <%= f.submit 'Update Draft', class: "btn btn-outline-secondary"%>
+            <%= f.submit 'Create Post', class: "btn btn-outline-secondary"%>
+          <% else %>
+            <%= f.submit 'Save Draft', class: "btn btn-outline-secondary"%>
+            <%= f.submit 'Create Post', class: "btn btn-outline-secondary"%>
+          <% end %>
         </div>
         <!-- buttons //end -->
 

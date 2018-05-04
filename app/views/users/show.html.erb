@@ -15,7 +15,11 @@
       <%= link_to "My Colllect", collects_user_path(@user), class: "nav-link" %>
     </li>
     <li class="nav-item">
-      <%= link_to "My Draft", drafts_user_path(@user), class: "nav-link" %>
+      <% if @user == current_user %>
+        <%= link_to "My Draft", drafts_user_path(@user), class: "nav-link" %>
+      <% else %>
+        <a href="#" class="nav-link disabled" disabled>My Draft</a>
+      <% end %>
     </li>
     <li class="nav-item">
       <%= link_to "My Friend", friends_user_path(@user), class: "nav-link" %>
@@ -26,11 +30,11 @@
   <div class="table-responsive">
     <table class="table text-center border">
       <tbody>
-        <% @user.posts.each do |post| %>
+        <% @posts.each do |post| %>
           <tr class="row m-0  user-objects">
             <td class="col-md-3 col-sm-12"><%= link_to post.title, post_path(post) %></td>
             <td class="col-md-2 col-sm-12"><%= post.who_can_see %></td>
-            <td class="col-md-2 col-sm-12"><%= post.created_at %></td>
+            <td class="col-md-2 col-sm-12"><%= post.created_at.strftime("%Y-%m-%d") %></td>
             <td class="col-md-5 col-sm-12">
               <% if current_user.id == post.user_id %>
                 <%= link_to "Edit", edit_post_path(post), class: "btn btn-outline-secondary" %>
