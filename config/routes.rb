@@ -5,9 +5,6 @@ Rails.application.routes.draw do
   # setup user
   resources :users, only: [:show, :edit, :update] do 
 
-    # setup draft
-    resources :drafts, except: [:new]
-
     member do 
       get :comments
       get :collects
@@ -16,6 +13,9 @@ Rails.application.routes.draw do
     end
 
   end
+
+  # setup draft
+  resources :drafts
 
   # setup post
   resources :posts do
