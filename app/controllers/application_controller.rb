@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  protect_from_forgery :except => :create
 
    # 加上自訂欄位name到Devise的註冊和編輯頁面
   before_action :configure_permitted_parameters, if: :devise_controller?
