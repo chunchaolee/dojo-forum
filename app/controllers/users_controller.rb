@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :comments, :collects, :drafts, :friends]
 
   def show
-    
+    @posts = @user.posts.where(is_published: true)
   end
 
   def edit
@@ -39,6 +39,10 @@ class UsersController < ApplicationController
       end
     end
 
+  end
+
+  def drafts
+    @drafts = @user.posts.where(is_published: false)
   end
 
   private 
