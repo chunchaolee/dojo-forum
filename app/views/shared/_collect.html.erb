@@ -1,0 +1,5 @@
+<% if current_user.is_collected?(object) %>
+  <%= link_to 'Uncollect', collection_path(object), remote: true, method: :delete, class: "btn btn-outline-secondary" %>
+<% else %>
+  <%= link_to 'Collect', collections_path(post_id: object), remote: true, method: :post, class: "btn btn-outline-secondary"%>
+<% end %>

@@ -1,0 +1,2 @@
+var collect = $("#collect");
+collect.html("<%= escape_javascript(render partial: 'shared/collect', locals: {object: @post}) %>");

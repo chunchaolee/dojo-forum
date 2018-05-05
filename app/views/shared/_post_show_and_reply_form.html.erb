@@ -5,8 +5,10 @@
       <div class="row" style="margin-right: 0px;">
         <span class="post-title col-md-9 col-sm-12"><strong><%= @post.title %></strong></span>
         <span class="col-md-2 col-sm-12 mr-auto">
-         <%= link_to "Collect", collections_path, class: "btn btn-outline-secondary" %>
-         <%= link_to "Comment", {:anchor => "add-comment"}, class: "btn btn-outline-secondary" %>
+          <span id="collect">
+            <%= render partial: "shared/collect", locals: {object: @post} %>
+          </span>
+          <%= link_to "Comment", {:anchor => "add-comment"}, class: "btn btn-outline-secondary" %>
        </span>
       </div>
     </div>
