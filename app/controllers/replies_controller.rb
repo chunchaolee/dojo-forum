@@ -6,6 +6,7 @@ class RepliesController < ApplicationController
   def edit
     @reply = Reply.find(params[:id])
     @post = Post.find(params[:post_id])
+    @user = User.find(@post.user_id)
     @replies = @post.replies.order(created_at: :desc).page(params[:page]).per(20)
   end
 
