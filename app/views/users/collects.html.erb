@@ -35,7 +35,7 @@
             <td class="col-md-4 col-sm-12"><%= link_to post.title, post_path(post) %></td>
             
             <td class="col-md-8 col-sm-12">
-              <span id="collect">
+              <span id="collect-<%= post.id %>">
                 <%= render partial: "shared/collect", locals: {object: post} %>
               </span>
             </td>

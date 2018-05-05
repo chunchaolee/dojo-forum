@@ -5,7 +5,7 @@
       <div class="row" style="margin-right: 0px;">
         <span class="post-title col-md-9 col-sm-12"><strong><%= @post.title %></strong></span>
         <span class="col-md-2 col-sm-12 mr-auto">
-          <span id="collect">
+          <span id="collect-<%= @post.id %>">
             <%= render partial: "shared/collect", locals: {object: @post} %>
           </span>
           <%= link_to "Comment", {:anchor => "add-comment"}, class: "btn btn-outline-secondary" %>
@@ -20,8 +20,17 @@
     <div class="row">
       <!-- post show //start -->
       <!-- avatar & friendship //start  -->
-      <div class="col-md-2 col-sm-12 border">
-        <h3>待施工</h3>
+      <div class="col-md-2 col-sm-12 border flex-center">
+        <div class="text-center">
+          <%= image_tag @user.avatar, width: '180px', heigth: '100px', class: "d-block img-fluid user-avatar" if @user.avatar? %><br />
+          <div class="user-name">
+            <%= link_to @user.name, user_path(@user) %>
+          </div>
+
+          <!-- friendship //start -->
+          <!-- friendship //end -->
+
+        </div>
       </div>
       <!-- avatar & friendship //end  -->
 
@@ -57,7 +66,16 @@
       <% @replies.each do |reply| %>
         <!-- avatar & friendship //start  -->
         <div class="col-md-2 col-sm-12 border reply-list">
-          <h3>待施工</h3>
+          <div class="text-center">
+            <%= image_tag reply.replied_user.avatar, width: '180px', heigth: '100px', class: "d-block img-fluid user-avatar" if reply.replied_user.avatar? %><br />
+            <div class="user-name">
+              <%= link_to reply.replied_user.name, user_path(reply.replied_user) %>
+            </div>
+
+            <!-- friendship //start -->
+            <!-- friendship //end -->
+            
+          </div>
         </div>
         <!-- avatar & friendship //end  -->
         
