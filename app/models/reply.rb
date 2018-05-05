@@ -8,4 +8,8 @@ class Reply < ApplicationRecord
   # 一筆reply只屬於一個post
   belongs_to :post, :counter_cache => true
 
+  def replied_user
+    User.find(self.user_id)
+  end
+
 end
