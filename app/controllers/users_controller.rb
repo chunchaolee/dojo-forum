@@ -45,6 +45,10 @@ class UsersController < ApplicationController
     @drafts = @user.posts.where(is_published: false)
   end
 
+  def collects
+    @posts = @user.collected_posts
+  end
+
   private 
 
   def set_user

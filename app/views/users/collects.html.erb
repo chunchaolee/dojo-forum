@@ -1,0 +1,49 @@
+<!-- user avatar & description //start -->
+<%= render partial: "shared/profile_header" %>
+<!-- user avatar & description //end -->
+
+<!-- user tabs //start-->
+<div class="container-fluid user-tabs">
+  <ul class="nav nav-tabs nav-fill">
+    <li class="nav-item">
+      <%= link_to "My Post", user_path(@user), class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "My Comment", comments_user_path(@user), class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "My Colllect", collects_user_path(@user), class: "nav-link active" %>
+    </li>
+    <li class="nav-item">
+      <% if @user == current_user %>
+        <%= link_to "My Draft", drafts_user_path(@user), class: "nav-link" %>
+      <% else %>
+        <a href="#" class="nav-link disabled" disabled>My Draft</a>
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "My Friend", friends_user_path(@user), class: "nav-link" %>
+    </li>
+  </ul>
+  
+
+  <div class="table-responsive">
+    <table class="table text-center border">
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr class="row m-0  user-objects">
+            <td class="col-md-4 col-sm-12"><%= link_to post.title, post_path(post) %></td>
+            
+            <td class="col-md-8 col-sm-12">
+              <span id="collect">
+                <%= render partial: "shared/collect", locals: {object: post} %>
+              </span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<!-- user tabs //end-->
