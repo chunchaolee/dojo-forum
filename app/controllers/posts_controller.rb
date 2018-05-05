@@ -42,6 +42,7 @@ class PostsController < ApplicationController
 
   def show
     @post.count_view
+    @user = User.find(@post.user_id)
     @reply = Reply.new
     @replies = @post.replies.order(created_at: :desc).page(params[:page]).per(20)
   end
