@@ -118,6 +118,13 @@ p {
   border-radius: 15px;
 }
 
+.friendship-button {
+  margin-bottom: 30px;
+}
+
+.friendship-button .btn{
+  margin-right: unset;
+}
 
 /*------ user profile ------*/
 .user-profile-header {
@@ -169,5 +176,33 @@ p {
   word-break: break-all;
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+
+.friend-status {
+  padding: 30px 0;
+}
+
+.applied-area, .friends-area {
+  background-color: #f0f0f0;
+}
+
+.applied-area .container-fluid, .requested-area .container-fluid, .friends-area .container-fluid {
+  margin-top: unset;
+}
+
+.applied, .requested, .friends {
+  display: inline-block;
+  text-align: center;
+  padding: 7px 7px 0 7px;
+  margin-bottom: 30px;
+}
+
+.applied > img, .requested > img, .friends >img {
+  width: 80px;
+  height: 70px;
+}
+
+.requested-area {
+  background-color: #bebebe;
 }
 
