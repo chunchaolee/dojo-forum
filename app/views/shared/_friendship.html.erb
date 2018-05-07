@@ -1,0 +1,9 @@
+<% if current_user.id == object.id %>
+  <button type="button" class="btn btn-secondary" disabled>Add Friend</button>
+<% elsif current_user.is_friend?(object) %>
+  <%= link_to 'Unfriend', friendship_path(object), remote: true, method: :delete, class: "btn btn-outline-secondary" %>
+<% elsif current_user.is_friend?(object) == false && current_user.is_applied?(object) %>
+  <button type="button" class="btn btn-secondary" disabled>Waiting For Response</button>
+<% else %>
+  <%= link_to 'Add Friend', friendships_path(friend_id: object), remote: true, method: :post, class: "btn btn-outline-secondary"%>
+<% end %>
