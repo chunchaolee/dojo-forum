@@ -22,6 +22,12 @@
             <div class="text-right user-edit-button">
               <%= link_to "Edit", edit_user_path(@user), class: "btn btn-outline-secondary" %>
             </div>
+          <% else %>
+            <!-- friendship //start -->
+            <div class="text-right friendship-button" id="user-<%= @user.id %>">
+              <%= render partial: "shared/friendship", locals: {object: @user} %>
+            </div>
+            <!-- friendship //end -->
           <% end %>
         </div>
       </div>
