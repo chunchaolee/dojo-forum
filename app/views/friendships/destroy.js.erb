@@ -1,0 +1,2 @@
+var friendship = $("#user-<%= @user.id %>");
+friendship.html("<%= escape_javascript(render partial: 'shared/friendship', locals: {object: @user}) %>");
