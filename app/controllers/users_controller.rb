@@ -49,6 +49,11 @@ class UsersController < ApplicationController
     @posts = @user.collected_posts
   end
 
+  def friends
+    @friends = @user.friends
+    @appliers = @user.appliers
+  end
+
   private 
 
   def set_user
