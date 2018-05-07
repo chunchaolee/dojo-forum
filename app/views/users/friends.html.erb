@@ -1,0 +1,119 @@
+<!-- user avatar & description //start -->
+<%= render partial: "shared/profile_header" %>
+<!-- user avatar & description //end -->
+
+<!-- user tabs //start-->
+<div class="container-fluid user-tabs">
+  <ul class="nav nav-tabs nav-fill">
+    <li class="nav-item">
+      <%= link_to "My Post", user_path(@user), class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "My Comment", comments_user_path(@user), class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "My Colllect", collects_user_path(@user), class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <% if @user == current_user %>
+        <%= link_to "My Draft", drafts_user_path(@user), class: "nav-link" %>
+      <% else %>
+        <a href="#" class="nav-link disabled" disabled>My Draft</a>
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "My Friend", friends_user_path(@user), class: "nav-link active" %>
+    </li>
+  </ul>
+  
+
+  <div>
+      
+    <% if current_user == @user %>
+
+      <!-- Waiting for response//start -->
+      <div class="applied-area">
+        <div class="container-fluid text-center">
+          <div class="friend-status">
+            <h5>Waiting For Response</h5>
+          </div>
+          <% @friends.each do |apply| %>
+            <% if @user.friends.include?(apply) && apply.friends.include?(@user) == false %>
+              <div class="text-center applied">
+                <% if apply.avatar? %>
+                  <%= image_tag apply.avatar, class: "user-avatar" %><br />
+                <% else %>
+                  <%= image_tag "http://via.placeholder.com/80x70", class: "user-avatar" %>
+                <% end %>
+
+                <%= link_to apply.name, user_path(apply) %>
+                
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <!-- Waiting for response//end -->
+
+      <!-- request//start -->
+      <div class="requested-area">
+        <div class="container-fluid text-center">
+          <div class="friend-status">
+            <h5>Friend's application</h5>
+          </div>
+          <% @appliers.each do |applier| %>
+            <% if @user.appliers.include?(applier) && applier.appliers.include?(@user) == false %>
+              <div class="text-center requested">
+                <% if applier.avatar? %>
+                  <%= image_tag applier.avatar, class: "user-avatar" %><br />
+                <% else %>
+                  <%= image_tag "http://via.placeholder.com/80x70", class: "user-avatar" %>
+                <% end %>
+
+                <%= link_to applier.name, user_path(applier) %><br /><br />
+
+                <div class="friendship-button" id="user-<%= applier.id %>">
+                  <%= link_to 'Accept', friendships_path(friend_id: applier), remote: true, method: :post, class: "btn btn-outline-secondary"%><br /><br />
+            
+                  <%= link_to 'Ignore', friendship_path(applier), name: "Ignore", remote: true, method: :delete, class: "btn btn-outline-secondary" %>
+                </div>
+                
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <!-- request//end -->
+
+    <% end %><!--  end of current user -->
+
+    <!-- friends//start -->
+    <div class="friends-area">
+      <div class="container-fluid text-center">
+        <div class="friend-status">
+          <h5>Friends</h5>
+        </div>
+        <% @friends.each do |friend| %>
+          <% if @user.friends.include?(friend) && friend.friends.include?(@user) %>
+            <div class="text-center friends">
+              <% if friend.avatar? %>
+                <%= image_tag friend.avatar, class: "user-avatar" %><br />
+              <% else %>
+                <%= image_tag "http://via.placeholder.com/80x70", class: "user-avatar" %>
+              <% end %>
+
+              <%= link_to friend.name, user_path(friend) %>
+              
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <!-- friends//end -->
+
+  </div>
+
+</div>
+<!-- user tabs //end-->
+
+

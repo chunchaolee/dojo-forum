@@ -15,7 +15,11 @@
       <%= link_to "My Colllect", collects_user_path(@user), class: "nav-link" %>
     </li>
     <li class="nav-item">
-      <%= link_to "My Draft", drafts_user_path(@user), class: "nav-link" %>
+      <% if @user == current_user %>
+        <%= link_to "My Draft", drafts_user_path(@user), class: "nav-link" %>
+      <% else %>
+        <a href="#" class="nav-link disabled" disabled>My Draft</a>
+      <% end %>
     </li>
     <li class="nav-item">
       <%= link_to "My Friend", friends_user_path(@user), class: "nav-link" %>
