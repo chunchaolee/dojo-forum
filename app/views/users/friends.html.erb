@@ -41,12 +41,14 @@
             <% if @user.friends.include?(apply) && apply.friends.include?(@user) == false %>
               <div class="text-center applied">
                 <% if apply.avatar? %>
-                  <%= image_tag apply.avatar, class: "user-avatar" %><br />
+                  <%= image_tag apply.avatar %><br /><br />
                 <% else %>
-                  <%= image_tag "http://via.placeholder.com/80x70", class: "user-avatar" %>
+                  <%= image_tag "http://via.placeholder.com/80x70" %><br /><br />
                 <% end %>
-
-                <%= link_to apply.name, user_path(apply) %>
+                
+                <div>
+                  <%= link_to apply.name, user_path(apply) %>
+                </div>
                 
               </div>
             <% end %>
@@ -65,12 +67,12 @@
             <% if @user.appliers.include?(applier) && applier.appliers.include?(@user) == false %>
               <div class="text-center requested">
                 <% if applier.avatar? %>
-                  <%= image_tag applier.avatar, class: "user-avatar" %><br />
+                  <%= image_tag applier.avatar %><br />
                 <% else %>
-                  <%= image_tag "http://via.placeholder.com/80x70", class: "user-avatar" %>
+                  <%= image_tag "http://via.placeholder.com/80x70" %>
                 <% end %>
 
-                <%= link_to applier.name, user_path(applier) %><br /><br />
+                <br /><%= link_to applier.name, user_path(applier) %><br /><br />
 
                 <div class="friendship-button" id="user-<%= applier.id %>">
                   <%= link_to 'Accept', friendships_path(friend_id: applier), remote: true, method: :post, class: "btn btn-outline-secondary"%><br /><br />
@@ -97,9 +99,9 @@
           <% if @user.friends.include?(friend) && friend.friends.include?(@user) %>
             <div class="text-center friends">
               <% if friend.avatar? %>
-                <%= image_tag friend.avatar, class: "user-avatar" %><br />
+                <%= image_tag friend.avatar %><br /><br />
               <% else %>
-                <%= image_tag "http://via.placeholder.com/80x70", class: "user-avatar" %>
+                <%= image_tag "http://via.placeholder.com/80x70" %><br /><br />
               <% end %>
 
               <%= link_to friend.name, user_path(friend) %>

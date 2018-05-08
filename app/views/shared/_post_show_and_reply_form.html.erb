@@ -76,7 +76,7 @@
             </div>
 
             <!-- friendship //start -->
-            <div class="friendship-button" id="user-<%= reply.replied_user %>">
+            <div class="friendship-button" id="user-<%= reply.replied_user.id %>">
               <%= render partial: "shared/friendship", locals: {object: reply.replied_user} %>
             </div>
             <!-- friendship //end -->
