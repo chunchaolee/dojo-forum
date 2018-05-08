@@ -41,10 +41,26 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post.count_view
-    @user = User.find(@post.user_id)
-    @reply = Reply.new
-    @replies = @post.replies.order(created_at: :desc).page(params[:page]).per(20)
+
+    if @post.who_can_see == "all"
+      post_contents
+    elsif @post.who_can_see == "friend"
+      @user = User.find(@post.user_id)
+      if @user.is_friend?(current_user) || current_user.is_admin
+        post_contents
+      else
+        redirect_back(fallback_location: posts_path)
+        flash["alert"] = "無瀏覽權限，僅開放好友瀏覽/留言"
+      end
+    elsif @post.who_can_see == "myself" 
+      if current_user.id == @post.user_id || current_user.is_admin
+        post_contents
+      else
+        redirect_back(fallback_location: posts_path)
+        flash["alert"] = "無瀏覽權限，僅作者能瀏覽！"
+      end 
+    end
+
   end
 
   def edit
@@ -101,6 +117,13 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def post_contents
+    @post.count_view
+    @user = User.find(@post.user_id)
+    @reply = Reply.new
+    @replies = @post.replies.order(created_at: :desc).page(params[:page]).per(20)
   end
 
 end
