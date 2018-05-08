@@ -10,12 +10,42 @@
     </thead>
     <tbody>
       <% objects.each do |object| %>
-        <tr class="row m-0">
-          <td class="col-2"><%= object.replies_count %></td>
-          <td class="col-6"><%= link_to object.title, post_path(object) %></td>
-          <td class="col-2"><%= object.last_replied_at.strftime("%Y-%m-%d") if object.last_replied_at %></td>
-          <td class="col-2"><%= object.viewed_count %></td>
-        </tr>
+        <% if current_user %>
+          <% if object.who_can_see == "all" || current_user.is_admin %>
+            <tr class="row m-0">
+              <td class="col-2"><%= object.replies_count %></td>
+              <td class="col-6"><%= link_to object.title, post_path(object) %></td>
+              <td class="col-2"><%= object.last_replied_at.strftime("%Y-%m-%d") if object.last_replied_at %></td>
+              <td class="col-2"><%= object.viewed_count %></td>
+            </tr>
+          <% elsif object.who_can_see == "friend" %>
+            <% if User.find(object.user_id).is_friend?(current_user) %>
+              <tr class="row m-0">
+                <td class="col-2"><%= object.replies_count %></td>
+                <td class="col-6"><%= link_to object.title, post_path(object) %></td>
+                <td class="col-2"><%= object.last_replied_at.strftime("%Y-%m-%d") if object.last_replied_at %></td>
+                <td class="col-2"><%= object.viewed_count %></td>
+              </tr>
+            <% end %>
+          <% elsif object.who_can_see == "myself" %>
+            <% if current_user.id == object.user_id %>
+              <tr class="row m-0">
+                <td class="col-2"><%= object.replies_count %></td>
+                <td class="col-6"><%= link_to object.title, post_path(object) %></td>
+                <td class="col-2"><%= object.last_replied_at.strftime("%Y-%m-%d") if object.last_replied_at %></td>
+                <td class="col-2"><%= object.viewed_count %></td>
+              </tr>
+            <% end %>
+          <% end %>
+          <% else %>
+            <tr class="row m-0">
+              <td class="col-2"><%= object.replies_count %></td>
+              <td class="col-6"><%= link_to object.title, post_path(object) %></td>
+              <td class="col-2"><%= object.last_replied_at.strftime("%Y-%m-%d") if object.last_replied_at %></td>
+              <td class="col-2"><%= object.viewed_count %></td>
+            </tr>
+          <% end %>
+
       <% end %>
     </tbody>
   </table>
