@@ -101,6 +101,14 @@ class PostsController < ApplicationController
     flash["notice"] = "成功刪除Post"
   end
 
+  def feeds
+    @users = User.all
+    @posts = Post.all
+    @comments = Reply.all
+    @hot_posts = @posts.order(viewed_count: :desc).limit(10)
+    @active_users = @users.order(replies_count: :desc).limit(10)
+  end
+
 
   private
 
