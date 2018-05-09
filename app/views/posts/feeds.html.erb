@@ -1,0 +1,82 @@
+<!-- feeds header //start -->
+<section class="feeds-header">
+  <div class="container-fluid">
+    <div class="row feeds-section justify-content-md-center text-center">
+       
+      <div class="col-md-2 col-sm-12">
+        <h3>User</h3>
+        <h3>
+          <div class="badge badge-secondary flex-center">
+            <%= @users.size %>
+          </div>
+        </h3>      
+      </div>
+
+      <div class="col-md-2 col-sm-12">
+        <h3>Post</h3>
+        <h3>
+          <div class="badge badge-secondary flex-center">
+            <%= @posts.size %>
+          </div>
+        </h3>      
+      </div>
+
+      <div class="col-md-2 col-sm-12">
+        <h3>Comments</h3>
+        <h3>
+          <div class="badge badge-secondary flex-center">
+            <%= @comments.size %>
+          </div>
+        </h3>      
+      </div>
+
+    </div>
+  </div>
+</section><br />
+<!-- feeds header //end -->
+
+<div class="row justify-content-md-center text-center" style="margin-right: 0px;margin-left: 0px;">
+  
+  <!-- chatterbox //start -->
+  <div class="col-md-4 col-sm-12">
+    <h2><span class="border-bottom">Chatterbox</span></h2>
+    <div class="table-responsive border-0">
+      <table class="table text-center">
+        <tbody>
+          <% @active_users.each_with_index do |user, i| %>
+            <tr class="row m-0">
+              <td class="col border-0 text-right"><%= i + 1 %>.</td>
+              <td class="col border-0 text-left"><%= link_to user.name, user_path(user) %></td>
+              </td>
+              <td class="col border-0 text-left"><%= user.replies_count %></td>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- chatterbox //end -->
+
+  <!-- Most Popular Post //start -->
+  <div class="col-md-6 col-sm-12">
+    <h2><span class="border-bottom">Most Popular Post</span></h2>
+    <div class="table-responsive border-0">
+      <table class="table text-center">
+        <tbody>
+          <% @hot_posts.each_with_index do |post, i| %>
+            <tr class="row m-0">
+              <td class="col border-0 text-center"><%= i + 1 %>.</td>
+              <td class="col border-0 text-center"><%= link_to post.title, post_path(post) %></td>
+              </td>
+              <td class="col border-0 text-center"><%= post.created_at.strftime("%Y-%m-%d") %></td>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Most Popular Post //end -->
+
+</div>
