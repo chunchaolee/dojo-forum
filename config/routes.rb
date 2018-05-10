@@ -45,7 +45,14 @@ Rails.application.routes.draw do
 
   end
 
-  # feed
+  # REST API
+  namespace :api, default: {format: :json} do
+
+    namespace :v1 do
+      resources :posts, only: [:index, :create, :show, :update, :destroy]
+    end
+
+  end
 
 
   root "posts#index"
