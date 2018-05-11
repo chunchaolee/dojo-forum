@@ -50,6 +50,8 @@ Rails.application.routes.draw do
 
     namespace :v1 do
       resources :posts, only: [:index, :create, :show, :update, :destroy]
+      post "/login" => "auth#login"
+      post "/login" => "auth#logout"
     end
 
   end
