@@ -79,7 +79,7 @@ class Api::V1::PostsController < ApiController
   private
 
   def post_params
-    params.require(:post).permit(:title, :detail, :img, :who_can_see, :user_id, :category_ids => [])
+    params.permit(:title, :detail, :img, :who_can_see, :user_id, :category_ids => [])
   end
 
   def set_post
@@ -89,7 +89,6 @@ class Api::V1::PostsController < ApiController
   def post_contents
     @post.count_view
     render json: @post
-    @user = @user = User.find(@post.user_id)
   end
 
 end

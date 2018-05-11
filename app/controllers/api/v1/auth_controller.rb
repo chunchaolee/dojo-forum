@@ -4,13 +4,13 @@ class Api::V1::AuthController < ApiController
 
   def login
     if params[:email] && params[:password]
-      user = User.find_by_eamil(params[:email])
+      user = User.find_by_email(params[:email])
     end
 
     if user && user.valid_password?(params[:password])
       render json: {
-        message: "ok",
-        auth_token: user.authenticate_token,
+        message: "Login Successfully",
+        auth_token: user.authentication_token,
         user_id: user.id
       }
     else
@@ -22,7 +22,7 @@ class Api::V1::AuthController < ApiController
     current_user.generate_authentication_token
     current_user.save!
 
-    render json: { message: "ok" }
+    render json: { message: "Logout Successfully" }
   end
 
 end
