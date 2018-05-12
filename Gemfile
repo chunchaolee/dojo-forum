@@ -48,6 +48,7 @@ gem 'ransack'
 # Kaminari
 gem 'kaminari'
 
+
 group :development, :test do
 
   gem 'capistrano-rails'
