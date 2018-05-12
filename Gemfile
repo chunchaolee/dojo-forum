@@ -48,6 +48,7 @@ gem 'ransack'
 # Kaminari
 gem 'kaminari'
 
+
 group :development, :test do
 
   gem 'capistrano-rails'
@@ -72,7 +73,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.20'
   # gem 'mysql2', '<0.5'
 end
 
