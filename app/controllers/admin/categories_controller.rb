@@ -40,7 +40,7 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def destroy
-    if @category.post_categories.size > 0
+    if @category.posts.size > 0
       flash[:alert] = "刪除Cateogry失敗，已被使用的Categories!"
       redirect_back(fallback_location: admin_categories_path)
     else

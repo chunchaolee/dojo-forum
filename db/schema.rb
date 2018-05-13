@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180512152808) do
+ActiveRecord::Schema.define(version: 20180513121842) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20180512152808) do
     t.string "level", default: "2"
     t.text "description"
     t.string "avatar"
-    t.integer "replies_count"
+    t.integer "replies_count", default: 0
     t.string "authentication_token"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
